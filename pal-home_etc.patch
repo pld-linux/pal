@@ -1,0 +1,82 @@
+diff -urN pal-0.3.4-orig/src/add.c pal-0.3.4/src/add.c
+--- pal-0.3.4-orig/src/add.c	2004-05-03 01:10:54.000000000 +0200
++++ pal-0.3.4/src/add.c	2004-09-27 12:29:11.396524120 +0200
+@@ -20,6 +20,7 @@
+ 
+ #include <stdio.h>
+ #include <readline/readline.h>
++#include <home_etc.h>
+ 
+ #include "main.h"
+ #include "output.h"
+@@ -351,7 +352,7 @@
+     do
+     {
+ 	prompt_again = FALSE;
+-	pal_rl_default_text = g_strconcat(g_get_home_dir(), "/.pal/", NULL);
++	pal_rl_default_text = g_strconcat(_HEdir, "/.pal/", NULL);
+ 	rl_pre_input_hook = (rl_hook_func_t*) pal_rl_default_text_fn;
+ 	filename = pal_rl_get_line("Filename: ");
+ 	rl_pre_input_hook = NULL;
+diff -urN pal-0.3.4-orig/src/input.c pal-0.3.4/src/input.c
+--- pal-0.3.4-orig/src/input.c	2004-05-03 01:10:54.000000000 +0200
++++ pal-0.3.4/src/input.c	2004-09-27 12:31:41.167755432 +0200
+@@ -25,6 +25,8 @@
+ #include <sys/stat.h>
+ #include <sys/types.h>
+ 
++#include <home_etc.h>
++
+ #include "main.h"
+ #include "output.h"
+ #include "event.h"
+@@ -549,7 +551,7 @@
+ 	    gchar* out_path;
+ 	    gint c;
+ 
+-	    out_dirname = g_strconcat(g_get_home_dir(), "/.pal", NULL);
++	    out_dirname = g_strconcat(_HEdir, "/.pal", NULL);
+ 	    out_path    = g_strconcat(out_dirname, "/pal.conf", NULL);
+ 
+ 	    pal_output_error(_("NOTE: Creating %s\n"), out_path);
+diff -urN pal-0.3.4-orig/src/main.c pal-0.3.4/src/main.c
+--- pal-0.3.4-orig/src/main.c	2004-05-03 01:10:54.000000000 +0200
++++ pal-0.3.4/src/main.c	2004-09-27 12:33:16.771221496 +0200
+@@ -26,6 +26,7 @@
+ #include <locale.h>
+ #include <sys/types.h> /* FreeBSD, regex.h needs this */
+ #include <regex.h>     /* regular expressions */
++#include <home_etc.h>
+ 
+ #include "colorize.h"
+ #include "output.h"
+@@ -613,7 +614,7 @@
+ 	}
+ 
+ 	g_free(settings->conf_file);
+-	settings->conf_file = g_strconcat("/home/", username, "/.pal/pal.conf", NULL);
++	settings->conf_file = g_strconcat(_HEdir, "/.pal/pal.conf", NULL);
+ 	settings->specified_conf_file = TRUE;
+ 	return on_arg;
+     }
+@@ -738,7 +739,7 @@
+     settings->latex_out           = FALSE;
+     settings->compact_list        = FALSE;
+     settings->compact_date_fmt    = g_strdup("%m/%d/%Y");
+-    settings->conf_file = g_strconcat(g_get_home_dir(), "/.pal/pal.conf", NULL);
++    settings->conf_file = g_strconcat(_HEdir, "/.pal/pal.conf", NULL);
+ 
+ #ifndef __CYGWIN__
+     /* figure out the terminal width */
+diff -urN pal-0.3.4-orig/src/Makefile pal-0.3.4/src/Makefile
+--- pal-0.3.4-orig/src/Makefile	2004-05-03 01:10:54.000000000 +0200
++++ pal-0.3.4/src/Makefile	2004-09-27 12:34:46.224622512 +0200
+@@ -4,7 +4,7 @@
+ 
+ INCLDIR = -I${prefix}/include `pkg-config --cflags glib-2.0`
+ LIBDIR  =
+-LIBS    = `pkg-config --libs glib-2.0` -lreadline -lncurses
++LIBS    = `pkg-config --libs glib-2.0` -lreadline -lncurses -lhome_etc
+ 
+ SRC     = main.c colorize.c output.c input.c event.c rl.c html.c latex.c \
+           add.c edit.c del.c remind.c search.c
