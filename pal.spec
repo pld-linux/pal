@@ -1,16 +1,17 @@
 # TODO:
 #  - handle with i18n files
 #
-Summary:	A command line calendar that displays holidays and user-defined events.
+Summary:	A command line calendar that displays holidays and user-defined events
+Summary(pl):	Dzia³aj±cy z linii poleceñ kalendarz wy¶wietlaj±cy ¶wiêta i inne zdarzenia
 Name:		pal
 Version:	0.3.4
 Release:	0.1
 License:	GPL v2
 Group:		Applications/Text
-URL:		http://palcal.sourceforge.net/
-Source0:	http://dl.sf.net/palcal/%{name}-%{version}.tgz
+Source0:	http://dl.sourceforge.net/palcal/%{name}-%{version}.tgz
 # Source0-md5:	86911792eace630a1c2e93846c27290c
 Patch0:		%{name}-home_etc.patch
+URL:		http://palcal.sourceforge.net/
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.2
 BuildRequires:	readline-devel
@@ -19,10 +20,16 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 pal is a command line calendar that displays holidays and user-defined
 events that are specified in text files. Recomended:
- - LaTex - required for creating ps/pdf/dvi claendars.
- - at, cron, sendmail - required for event reminders via email
+ - LaTeX - required for creating ps/pdf/dvi calendars.
+ - at, cron, some MTA - required for event reminders via email
 
-%define debug_package %{nil}
+%description -l pl
+pal to dzia³aj±cy z linii poleceñ kalendarz wy¶wietlaj±cy ¶wiêta i
+zdarzenia zdefiniowane przez u¿ytkownika podane w plikach tekstowych.
+Zalecane:
+ - LaTeX - wymagany do tworzenia kalendarzy ps/pdf/dvi.
+ - at, cron, jaki¶ MTA - wymagane do wysy³ania przypominajek
+   poczt± elektroniczn±.
 
 %prep
 %setup -q
@@ -30,15 +37,15 @@ events that are specified in text files. Recomended:
 
 %build
 sed 's/VERSION/%{version}/' pal.1.template > pal.1
-cd src
-%{__make}
+%{__make} -C src
 
-cd ../po
-for file in *po; do
-	f=`echo $file|cut -f1 -d.`
-	mkdir -p "$f/LC_MESSAGES"
-	msgfmt $file -o "$f/LC_MESSAGES/%{name}.po"
-done
+# ???
+#cd po
+#for file in *po; do
+#	f=`echo $file|cut -f1 -d.`
+#	mkdir -p "$f/LC_MESSAGES"
+#	msgfmt $file -o "$f/LC_MESSAGES/%{name}.po"
+#done
 
 %install
 rm -rf $RPM_BUILD_ROOT
