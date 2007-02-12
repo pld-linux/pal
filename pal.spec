@@ -2,7 +2,7 @@
 #  - handle with i18n files
 #
 Summary:	A command line calendar that displays holidays and user-defined events
-Summary(pl):	Dzia³aj±cy z linii poleceñ kalendarz wy¶wietlaj±cy ¶wiêta i inne zdarzenia
+Summary(pl.UTF-8):   DziaÅ‚ajÄ…cy z linii poleceÅ„ kalendarz wyÅ›wietlajÄ…cy Å›wiÄ™ta i inne zdarzenia
 Name:		pal
 Version:	0.3.4
 Release:	0.1
@@ -23,13 +23,13 @@ events that are specified in text files. Recomended:
  - LaTeX - required for creating ps/pdf/dvi calendars.
  - at, cron, some MTA - required for event reminders via email
 
-%description -l pl
-pal to dzia³aj±cy z linii poleceñ kalendarz wy¶wietlaj±cy ¶wiêta i
-zdarzenia zdefiniowane przez u¿ytkownika podane w plikach tekstowych.
+%description -l pl.UTF-8
+pal to dziaÅ‚ajÄ…cy z linii poleceÅ„ kalendarz wyÅ›wietlajÄ…cy Å›wiÄ™ta i
+zdarzenia zdefiniowane przez uÅ¼ytkownika podane w plikach tekstowych.
 Zalecane:
  - LaTeX - wymagany do tworzenia kalendarzy ps/pdf/dvi.
- - at, cron, jaki¶ MTA - wymagane do wysy³ania przypominajek
-   poczt± elektroniczn±.
+ - at, cron, jakiÅ› MTA - wymagane do wysyÅ‚ania przypominajek
+   pocztÄ… elektronicznÄ….
 
 %prep
 %setup -q
