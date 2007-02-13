@@ -2,7 +2,7 @@
 #  - handle with i18n files
 #
 Summary:	A command line calendar that displays holidays and user-defined events
-Summary(pl.UTF-8):   Działający z linii poleceń kalendarz wyświetlający święta i inne zdarzenia
+Summary(pl.UTF-8):	Działający z linii poleceń kalendarz wyświetlający święta i inne zdarzenia
 Name:		pal
 Version:	0.3.4
 Release:	0.1
