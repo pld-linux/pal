@@ -12,7 +12,7 @@ Source0:	http://dl.sourceforge.net/palcal/%{name}-%{version}.tgz
 # Source0-md5:	86911792eace630a1c2e93846c27290c
 Patch0:		%{name}-home_etc.patch
 URL:		http://palcal.sourceforge.net/
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 2.2
 BuildRequires:	readline-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
