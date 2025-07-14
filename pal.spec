@@ -33,7 +33,7 @@ Zalecane:
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 sed 's/VERSION/%{version}/' pal.1.template > pal.1
